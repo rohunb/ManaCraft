@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Attacker.cs" />
     <Compile Include="Assets\Scripts\DetectTarget.cs" />
     <Compile Include="Assets\Scripts\Framework\ExtensionMethods.cs" />
+    <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\TowerInfo.cs" />
     <Compile Include="Assets\Scripts\TriggerNotifier.cs" />
   </ItemGroup>

@@ -8,7 +8,29 @@ using UnityEngine.Assertions;
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(Health))]
 public class AttackableTarget : MonoBehaviour 
 {
+    public delegate void Destroyed(AttackableTarget target);
+    public event Destroyed OnDestroyed = new Destroyed((AttackableTarget target) => { });
 
+    private Health health;
+
+    private void Awake()
+    {
+        health = gameObject.GetComponentSafe<Health>();
+
+        health.OnZeroHealth += ReachedZeroHealth;
+    }
+
+    private void ReachedZeroHealth()
+    {
+        OnDestroyed(this);
+        Destroy(gameObject);
+    }
+
+    public void OnAttacked(float damage)
+    {
+        health.TakeDamage(damage);
+    }
 }

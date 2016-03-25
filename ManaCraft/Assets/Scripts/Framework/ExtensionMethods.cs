@@ -160,7 +160,7 @@ public static class ExtensionMethods
     public static T GetComponentSafe<T>(this GameObject obj) where T : Component
     {
         T component = obj.GetComponent<T>();
-        Assert.IsNotNull(component, "Could not find " + typeof(T) + " component");
+        Assert.IsNotNull(component, "Could not find " + typeof(T) + " component in " + obj.name);
         return component;
     }
 

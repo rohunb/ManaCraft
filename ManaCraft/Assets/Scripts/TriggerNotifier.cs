@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(SphereCollider))]
 public class TriggerNotifier : MonoBehaviour 
 {
     public delegate void TriggerEntered(Collider otherCollider);
@@ -17,7 +17,15 @@ public class TriggerNotifier : MonoBehaviour
     public event TriggerEntered OnTriggerEntered = new TriggerEntered((Collider) => { });
     public event TriggerExited OnTriggerExited = new TriggerExited((Collider) => { });
 
-    private Collider attachedCollider;
+    [SerializeField]
+    private SphereCollider attachedCollider;
+
+    public void SetSphereColliderRange(float range)
+    {
+        Assert.IsNotNull(attachedCollider);
+
+        attachedCollider.radius = range;
+    }
 
     private void OnTriggerEnter(Collider otherCollider)
     {

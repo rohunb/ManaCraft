@@ -28,9 +28,12 @@ public class EditorAutoSave
     {
         float currentTime = Time.realtimeSinceStartup;
 
-        if(currentTime >= timeToSave)
+        bool shouldSave = EditorSceneManager.GetActiveScene().isDirty
+                        && currentTime >= timeToSave;
+
+        if(shouldSave)
         {
-            Debug.LogError("Autosaving...");
+            Debug.Log("Autosaving...");
 
             EditorSceneManager.SaveOpenScenes();
             timeToSave = currentTime + autoSaveTimeSeconds;

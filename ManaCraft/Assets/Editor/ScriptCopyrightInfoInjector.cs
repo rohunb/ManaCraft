@@ -26,11 +26,9 @@ public class ScriptCopyrightInfoInjector : UnityEditor.AssetModificationProcesso
 
     public static void OnWillCreateAsset(string path)
     {
-        Debug.Log("Script: " + path);
         //not a script
         if (!path.Contains(scriptExtension))
         {
-            Debug.Log("not cs");
             return;
         }
 
@@ -40,7 +38,6 @@ public class ScriptCopyrightInfoInjector : UnityEditor.AssetModificationProcesso
         string ext = path.Substring(index);
         if (ext != scriptExtension)
         {
-            Debug.Log("meta ext " + ext);
             return;
         }
 

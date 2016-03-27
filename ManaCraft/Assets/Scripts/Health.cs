@@ -16,6 +16,11 @@ public class Health : MonoBehaviour
     public delegate void ZeroHealth();
     public event ZeroHealth OnZeroHealth = new ZeroHealth(() => { });
 
+    public bool IsAlive
+    {
+        get { return currentHealth > 0.0f; }
+    }
+
     private float currentHealth;
 
     private void Awake()

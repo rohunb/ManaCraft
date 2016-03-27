@@ -14,6 +14,11 @@ public class AttackableTarget : MonoBehaviour
     public delegate void Destroyed(AttackableTarget target);
     public event Destroyed OnDestroyed = new Destroyed((AttackableTarget target) => { });
 
+    public bool IsAlive
+    {
+        get { return health.IsAlive; }
+    }
+
     private Health health;
 
     private void Awake()

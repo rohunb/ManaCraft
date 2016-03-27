@@ -16,6 +16,9 @@ public class Attacker : MonoBehaviour
     [SerializeField]
     private float damage;
 
+    [SerializeField]
+    private AttackInfo attackInfo;
+
     private DetectTarget detectTarget;
     private List<AttackableTarget> targetList = new List<AttackableTarget>();
 

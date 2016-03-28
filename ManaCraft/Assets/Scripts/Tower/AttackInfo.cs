@@ -26,6 +26,12 @@ public class AttackInfo
         CreateConeEffect,
     }
 
+    public enum AttackVisualTarget
+    {
+        TargetCreep,
+        TargetGroundBelowCreep
+    }
+
     public enum DamageEffectDelayType
     {
         Instant,
@@ -52,6 +58,7 @@ public class AttackInfo
     public ElementalEffect elementalEffect;
 
     public AttackVisual attackVisual;
+    public AttackVisualTarget attackVisualTarget;
     public DamageEffectDelayType damageEffectDelay;
     public List<AttackImpactEffect> attackImpactEffectList;
     public TargetAcquisition targetAcquisition;

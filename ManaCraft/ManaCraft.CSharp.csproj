@@ -64,17 +64,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\3rd Party\Standard Assets\Utility\FPSCounter.cs" />
-    <Compile Include="Assets\Scripts\AttackInfo.cs" />
     <Compile Include="Assets\Scripts\AttackableTarget.cs" />
-    <Compile Include="Assets\Scripts\Attacker.cs" />
-    <Compile Include="Assets\Scripts\DetectTarget.cs" />
+    <Compile Include="Assets\Scripts\Data\ScriptableObjectActivator.cs" />
+    <Compile Include="Assets\Scripts\Data\TagsAndLayers.cs" />
     <Compile Include="Assets\Scripts\Framework\ExtensionMethods.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
-    <Compile Include="Assets\Scripts\NewTower2.cs" />
-    <Compile Include="Assets\Scripts\Tower.cs" />
-    <Compile Include="Assets\Scripts\TowerActionList.cs" />
-    <Compile Include="Assets\Scripts\TowerInfo.cs" />
-    <Compile Include="Assets\Scripts\TriggerNotifier.cs" />
+    <Compile Include="Assets\Scripts\Tower\AttackInfo.cs" />
+    <Compile Include="Assets\Scripts\Tower\DetectTarget.cs" />
+    <Compile Include="Assets\Scripts\Tower\Tower.AcquireTargets.cs" />
+    <Compile Include="Assets\Scripts\Tower\Tower.AttackVisuals.cs" />
+    <Compile Include="Assets\Scripts\Tower\Tower.DelayedDamage.cs" />
+    <Compile Include="Assets\Scripts\Tower\Tower.DoDamage.cs" />
+    <Compile Include="Assets\Scripts\Tower\Tower.ImpactEffects.cs" />
+    <Compile Include="Assets\Scripts\Tower\Tower.cs" />
+    <Compile Include="Assets\Scripts\Tower\TriggerNotifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\3rd Party\Standard Assets\Prototyping\Shaders\WorldCoordDiffuse.shader" />

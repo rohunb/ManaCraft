@@ -85,4 +85,6 @@ public class AttackInfo
     public GameObject projectilePrefab;
     public Transform shootPoint;
     public float projectileSpeed;
+
+    public float groundTargetAoERadius;
 }

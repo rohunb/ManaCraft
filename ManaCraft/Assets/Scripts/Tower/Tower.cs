@@ -28,6 +28,9 @@ public partial class Tower : MonoBehaviour
 
     private void Start()
     {
+        Assert.IsTrue(attackInfo.range > 0.0f);
+        detectTarget.SetDetectionRadius(attackInfo.range);
+
         detectTarget.OnTargetEnter += TargetFound;
         detectTarget.OnTargetExit += TargetLost;
     }
@@ -71,18 +74,5 @@ public partial class Tower : MonoBehaviour
         }
         //To indicate that the tower is not attacking anymore
         attackRoutine = null;
-    }
-
-    private void ApplyDamage(AttackableTarget target)
-    {
-        RunAcquireTargetLogic(target);
-
-        Assert.IsTrue(targetsToDamage.Count > 0);
-
-        foreach (var targetToDamage in targetsToDamage)
-        {
-            RunImpactEffects(targetToDamage);
-            DoDamage(targetToDamage);
-        }
     }
 }

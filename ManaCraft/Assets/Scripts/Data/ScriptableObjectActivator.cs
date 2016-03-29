@@ -13,4 +13,9 @@ public class ScriptableObjectActivator : MonoBehaviour
 {
     [SerializeField]
     private TagsAndLayers tagsAndLayers;
+
+    private void Awake()
+    {
+        Assert.IsNotNull(tagsAndLayers);
+    }
 }

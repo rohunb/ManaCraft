@@ -62,6 +62,6 @@ public partial class Tower : MonoBehaviour
 
         yield return new WaitForSeconds(projectileTimeToImpact);
 
-                        
+        ApplyDamage(target);
     }
 }

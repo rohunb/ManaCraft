@@ -10,6 +10,17 @@ using System.Collections.Generic;
 
 public partial class Tower : MonoBehaviour 
 {
+    private void ApplyDamage(AttackableTarget target)
+    {
+        RunAcquireTargetLogic(target);
+
+        foreach (var targetToDamage in targetsToDamage)
+        {
+            RunImpactEffects(targetToDamage);
+            DoDamage(targetToDamage);
+        }
+    }
+
     private void DoDamage(AttackableTarget target)
     {
         ApplyELementalEffects(target);

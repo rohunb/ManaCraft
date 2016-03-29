@@ -25,7 +25,18 @@ public partial class Tower : MonoBehaviour
             }
             case AttackInfo.TargetAcquisition.GetTargetsInAoEAroundPoint:
             {
-                Assert.IsTrue(false);
+                Assert.IsTrue(attackInfo.groundTargetAoERadius > 0.0f);
+
+                Collider[] collidersInAoERange = Physics.OverlapSphere(projectileTargetPosition, attackInfo.groundTargetAoERadius, 1 << TagsAndLayers.CreepLayer);
+
+                StartCoroutine(DebugDrawExplosionSphereTimed(2.0f));
+
+                foreach (var collider in collidersInAoERange)
+                {
+                    AttackableTarget targetToDamage = collider.gameObject.GetComponentSafe<AttackableTarget>();
+                    targetsToDamage.Add(targetToDamage);
+                }
+
                 break;
             }
             case AttackInfo.TargetAcquisition.GetTargetsInConeAoE:
@@ -44,5 +55,27 @@ public partial class Tower : MonoBehaviour
                 break;
             }
         }
+    }
+
+
+    //Debug Draw
+    private bool drawGizmos = false;
+
+    private IEnumerator DebugDrawExplosionSphereTimed(float durationS)
+    {
+        drawGizmos = true;
+        yield return new WaitForSeconds(durationS);
+        drawGizmos = false;
+    }
+
+    public void OnDrawGizmos()
+    {
+        if(!drawGizmos)
+        {
+            return;
+        }
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(projectileTargetPosition, attackInfo.groundTargetAoERadius);
     }
 }

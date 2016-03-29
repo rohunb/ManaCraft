@@ -66,15 +66,13 @@ public partial class Tower : MonoBehaviour
             {
                 Ray rayDownFromTargetToGround = new Ray(currentTargetPosition, Vector3.down);
                 RaycastHit rayCastHitOnGround;
-                bool targetIsOnGround = Physics.Raycast(rayDownFromTargetToGround, out rayCastHitOnGround, 100.0f, TagsAndLayers.GroundLayer);
-                if(targetIsOnGround)
-                {
-                    projectileTargetPosition = rayCastHitOnGround.point;
-                }
-                else
-                {
-                    Assert.IsTrue(false, "Target is not on ground (may need to increase raycast distance");
-                }
+
+                bool targetIsOnGround = Physics.Raycast(rayDownFromTargetToGround, out rayCastHitOnGround, 100.0f, 1 << TagsAndLayers.GroundLayer);
+
+                Assert.IsTrue(targetIsOnGround, "Target is not on ground (may need to increase raycast distance");
+
+                projectileTargetPosition = rayCastHitOnGround.point;
+
                 break;
             }
             default:

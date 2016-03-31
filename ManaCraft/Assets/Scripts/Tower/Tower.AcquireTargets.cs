@@ -27,7 +27,7 @@ public partial class Tower : MonoBehaviour
             {
                 Assert.IsTrue(attackInfo.groundTargetAoERadius > 0.0f);
 
-                Collider[] collidersInAoERange = Physics.OverlapSphere(projectileTargetPosition, attackInfo.groundTargetAoERadius, 1 << TagsAndLayers.CreepLayer);
+                Collider[] collidersInAoERange = Physics.OverlapSphere(visualTargetPosition, attackInfo.groundTargetAoERadius, 1 << TagsAndLayers.CreepLayer);
 
                 StartCoroutine(DebugDrawExplosionSphereTimed(2.0f));
 
@@ -76,6 +76,6 @@ public partial class Tower : MonoBehaviour
         }
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(projectileTargetPosition, attackInfo.groundTargetAoERadius);
+        Gizmos.DrawWireSphere(visualTargetPosition, attackInfo.groundTargetAoERadius);
     }
 }

@@ -16,7 +16,7 @@ public partial class Tower : MonoBehaviour
         {
             case AttackInfo.DamageEffectDelayType.Instant:
             {
-                Assert.IsTrue(false);
+                ApplyDamage(currentTarget);
                 break;
             }
             case AttackInfo.DamageEffectDelayType.WaitForProjectileTravelTime:

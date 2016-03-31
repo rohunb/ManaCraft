@@ -16,8 +16,6 @@ public class AttackInfo
 
     public enum AttackStyle { DirectDamage, PBAoE, TargetedAoE, Cone, Chain }
 
-    public enum ElementalEffect { None, Burn, Slow, Stun, Piercing }
-
     public enum AttackVisual
     {
         LaunchProjectileMesh,
@@ -55,13 +53,13 @@ public class AttackInfo
 
     public ElementType elementType;
     public AttackStyle attackStyle;
-    public ElementalEffect elementalEffect;
 
     public AttackVisual attackVisual;
     public AttackVisualTarget attackVisualTarget;
     public DamageEffectDelayType damageEffectDelay;
     public List<AttackImpactEffect> attackImpactEffectList;
     public TargetAcquisition targetAcquisition;
+    public List<ElementalEffect> elementalEffects;
 
     //Universal
     public float damage;
@@ -85,6 +83,9 @@ public class AttackInfo
     public GameObject projectilePrefab;
     public Transform shootPoint;
     public float projectileSpeed;
+
+    //Line Renderer
+    public float lineEffectDuration;
 
     public float groundTargetAoERadius;
 }

@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(Health), typeof(ElementalEffectReceiver))]
 public class AttackableTarget : MonoBehaviour 
 {
     public delegate void Destroyed(AttackableTarget target);
@@ -20,11 +20,16 @@ public class AttackableTarget : MonoBehaviour
     }
 
     private Health health;
+    private ElementalEffectReceiver elementalEffectReceiver;
 
     private void Awake()
     {
         health = gameObject.GetComponentSafe<Health>();
+        elementalEffectReceiver = gameObject.GetComponentSafe<ElementalEffectReceiver>();
+    }
 
+    private void Start()
+    {
         health.OnZeroHealth += ReachedZeroHealth;
     }
 
@@ -37,5 +42,10 @@ public class AttackableTarget : MonoBehaviour
     public void OnAttacked(float damage)
     {
         health.TakeDamage(damage);
+    }
+
+    public void OnElementalEffect(ElementalEffect elementalEffect)
+    {
+        elementalEffectReceiver.Apply(elementalEffect);
     }
 }

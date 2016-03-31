@@ -13,7 +13,7 @@ public partial class Tower : MonoBehaviour
     //Keep track of this to trigger the delayed damage effect when set to WaitForProjectileTravelTime
     float projectileTimeToImpact;
     //Used by ground targeted aoe
-    Vector3 projectileTargetPosition;
+    Vector3 visualTargetPosition;
 
     private void RunAttackVisual()
     {
@@ -23,12 +23,12 @@ public partial class Tower : MonoBehaviour
         {
             case AttackInfo.AttackVisual.LaunchProjectileMesh:
             {
-                LaunchProjectileMesh(projectileTargetPosition);
+                LaunchProjectileMesh(visualTargetPosition);
                 break;
             }
             case AttackInfo.AttackVisual.CreateLineRendererEffect:
             {
-                Assert.IsTrue(false);
+                StartCoroutine(CreateLineRendererEffect(visualTargetPosition));
                 break;
             }
             case AttackInfo.AttackVisual.CreateParticleEffect:
@@ -59,7 +59,7 @@ public partial class Tower : MonoBehaviour
         {
             case AttackInfo.AttackVisualTarget.TargetCreep:
             {
-                projectileTargetPosition = currentTargetPosition;
+                visualTargetPosition = currentTargetPosition;
                 break;
             }
             case AttackInfo.AttackVisualTarget.TargetGroundBelowCreep:
@@ -71,7 +71,7 @@ public partial class Tower : MonoBehaviour
 
                 Assert.IsTrue(targetIsOnGround, "Target is not on ground (may need to increase raycast distance");
 
-                projectileTargetPosition = rayCastHitOnGround.point;
+                visualTargetPosition = rayCastHitOnGround.point;
 
                 break;
             }
@@ -114,5 +114,21 @@ public partial class Tower : MonoBehaviour
 
         Debug.Log("Projectile velocity = " + projectile.GetComponent<Rigidbody>().velocity);
         Debug.Log("Time to impact = " + projectileTimeToImpact);
+    }
+
+    private IEnumerator CreateLineRendererEffect(Vector3 targetPosition)
+    {
+        LineRenderer line = gameObject.GetComponentSafe<LineRenderer>();
+
+        line.SetVertexCount(2);
+        line.SetPosition(0, attackInfo.shootPoint.position);
+        line.SetPosition(1, targetPosition);
+        line.SetColors(Color.red, Color.red);
+
+        line.enabled = true;
+
+        yield return new WaitForSeconds(attackInfo.lineEffectDuration);
+
+        line.enabled = false;
     }
 }

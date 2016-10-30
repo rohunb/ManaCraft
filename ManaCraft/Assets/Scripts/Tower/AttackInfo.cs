@@ -19,9 +19,9 @@ public class AttackInfo
     public enum AttackVisual
     {
         LaunchProjectileMesh,
-        CreateLineRendererEffect,
-        CreateParticleEffect,
-        CreateConeEffect,
+        LineRendererEffect,
+        ParticleEffect,
+        ConeEffect,
     }
 
     public enum AttackVisualTarget
@@ -35,6 +35,13 @@ public class AttackInfo
         Instant,
         WaitForProjectileTravelTime,
         WaitForProjectileGroundImpact
+    }
+
+    public enum ImpactEffectType
+    {
+        AtTarget,
+        OnGround,
+        ChainTargets
     }
 
     public enum AttackImpactEffect
@@ -57,6 +64,7 @@ public class AttackInfo
     public AttackVisual attackVisual;
     public AttackVisualTarget attackVisualTarget;
     public DamageEffectDelayType damageEffectDelay;
+    public ImpactEffectType impactEffectType;
     public List<AttackImpactEffect> attackImpactEffectList;
     public TargetAcquisition targetAcquisition;
     public List<ElementalEffect> elementalEffects;
@@ -88,4 +96,7 @@ public class AttackInfo
     public float lineEffectDuration;
 
     public float groundTargetAoERadius;
+
+    public int numChainJumps;
+    public float chainAoERadius;
 }

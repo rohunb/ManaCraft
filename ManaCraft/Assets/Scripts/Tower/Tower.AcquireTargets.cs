@@ -25,18 +25,7 @@ public partial class Tower : MonoBehaviour
             }
             case AttackInfo.TargetAcquisition.GetTargetsInAoEAroundPoint:
             {
-                Assert.IsTrue(attackInfo.groundTargetAoERadius > 0.0f);
-
-                Collider[] collidersInAoERange = Physics.OverlapSphere(visualTargetPosition, attackInfo.groundTargetAoERadius, 1 << TagsAndLayers.CreepLayer);
-
-                StartCoroutine(DebugDrawExplosionSphereTimed(2.0f));
-
-                foreach (var collider in collidersInAoERange)
-                {
-                    AttackableTarget targetToDamage = collider.gameObject.GetComponentSafe<AttackableTarget>();
-                    targetsToDamage.Add(targetToDamage);
-                }
-
+                GetTargetsInAoEAroundPoint();            
                 break;
             }
             case AttackInfo.TargetAcquisition.GetTargetsInConeAoE:
@@ -46,7 +35,7 @@ public partial class Tower : MonoBehaviour
             }
             case AttackInfo.TargetAcquisition.GetTargetsInChainAoE:
             {
-                Assert.IsTrue(false);
+                GetTargetsInChainAoE();
                 break;
             }
             default:
@@ -57,12 +46,46 @@ public partial class Tower : MonoBehaviour
         }
     }
 
+    private void GetTargetsInAoEAroundPoint()
+    {
+        Assert.IsTrue(attackInfo.groundTargetAoERadius > 0.0f);
+
+        Collider[] collidersInAoERange = Physics.OverlapSphere(visualTargetPosition, attackInfo.groundTargetAoERadius, 1 << TagsAndLayers.CreepLayer);
+
+        StartCoroutine(DebugDrawSphereTimed(2.0f, attackInfo.groundTargetAoERadius));
+
+        foreach (var collider in collidersInAoERange)
+        {
+            AttackableTarget targetToDamage = collider.gameObject.GetComponentSafe<AttackableTarget>();
+            targetsToDamage.Add(targetToDamage);
+        }
+    }
+
+    private void GetTargetsInChainAoE()
+    {
+        Assert.IsTrue(attackInfo.chainAoERadius > 0.0f);
+        Assert.IsTrue(attackInfo.numChainJumps > 0);
+
+        Collider[] collidersInAoERange = Physics.OverlapSphere(visualTargetPosition, attackInfo.groundTargetAoERadius, 1 << TagsAndLayers.CreepLayer);
+
+        StartCoroutine(DebugDrawSphereTimed(2.0f, attackInfo.chainAoERadius));
+
+        int numTargetsToSelect = Mathf.Min(attackInfo.numChainJumps, collidersInAoERange.Length);
+
+        for (int i = 0; i < numTargetsToSelect; ++i)
+        {
+            AttackableTarget targetToDamage = collidersInAoERange[i].gameObject.GetComponentSafe<AttackableTarget>();
+            targetsToDamage.Add(targetToDamage);
+        }
+    }
 
     //Debug Draw
     private bool drawGizmos = false;
+    private float gizmoSphereRadius;
 
-    private IEnumerator DebugDrawExplosionSphereTimed(float durationS)
+    private IEnumerator DebugDrawSphereTimed(float durationS, float radius)
     {
+        gizmoSphereRadius = radius;
         drawGizmos = true;
         yield return new WaitForSeconds(durationS);
         drawGizmos = false;
@@ -76,6 +99,6 @@ public partial class Tower : MonoBehaviour
         }
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(visualTargetPosition, attackInfo.groundTargetAoERadius);
+        Gizmos.DrawWireSphere(visualTargetPosition, gizmoSphereRadius);
     }
 }

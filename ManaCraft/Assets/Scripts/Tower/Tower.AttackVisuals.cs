@@ -26,17 +26,17 @@ public partial class Tower : MonoBehaviour
                 LaunchProjectileMesh(visualTargetPosition);
                 break;
             }
-            case AttackInfo.AttackVisual.CreateLineRendererEffect:
+            case AttackInfo.AttackVisual.LineRendererEffect:
             {
                 StartCoroutine(CreateLineRendererEffect(visualTargetPosition));
                 break;
             }
-            case AttackInfo.AttackVisual.CreateParticleEffect:
+            case AttackInfo.AttackVisual.ParticleEffect:
             {
                 Assert.IsTrue(false);
                 break;
             }
-            case AttackInfo.AttackVisual.CreateConeEffect:
+            case AttackInfo.AttackVisual.ConeEffect:
             {
                 Assert.IsTrue(false);
                 break;

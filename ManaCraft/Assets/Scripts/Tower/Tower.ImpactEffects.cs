@@ -12,6 +12,27 @@ public partial class Tower : MonoBehaviour
 {
     private void RunImpactEffects(AttackableTarget target)
     {
+        switch (attackInfo.impactEffectType)
+        {
+            case AttackInfo.ImpactEffectType.AtTarget:
+            {
+                Debug.LogWarning("Not Implemented");
+                break;
+            }
+            case AttackInfo.ImpactEffectType.OnGround:
+            {
+                Debug.LogWarning("Not Implemented");
+                break;
+            }
+            case AttackInfo.ImpactEffectType.ChainTargets:
+            {
+
+                break;
+            }
+            default:
+            break;
+        }
+
         foreach (var impactEffect in attackInfo.attackImpactEffectList)
         {
             switch (impactEffect)

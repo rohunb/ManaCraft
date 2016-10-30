@@ -14,10 +14,10 @@ public partial class Tower : MonoBehaviour
     private void ApplyDamage(AttackableTarget target)
     {
         RunAcquireTargetLogic(target);
+        RunImpactEffects(target);
 
         foreach (var targetToDamage in targetsToDamage)
         {
-            RunImpactEffects(targetToDamage);
             DoDamage(targetToDamage);
         }
     }

@@ -18,6 +18,7 @@ public struct ElementalEffect
     public float durationS;
     public float damagePerSecond;
     public float movementReduction;
+    public float armourPenetration;
 
     public bool DoesDamage()
     {

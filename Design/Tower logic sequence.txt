@@ -1,0 +1,104 @@
+Arrow:
+	Attack:
+		Spawn Projectile Mesh
+		launch at target
+	Project Impact (guaranteed):
+		Impact VFX/Sound
+		Destroy proj
+		Do Damage
+	DoDamage:
+		DirectDamage to target
+
+Cannon:
+	Attack:
+		Spawn Projectile Mesh
+		launch at target
+	Project Impact with ground:
+		Impact VFX/Sound
+		Destroy proj
+		Do Damage
+	DoDamage:
+		Get all enemies within radius
+		Do damage to all
+
+Flame:
+	Attack:
+		Spawn Projectile Mesh
+		launch at target
+	Project Impact (guaranteed):
+		Impact VFX/Sound
+		Destroy proj
+		Do Damage
+	DoDamage:
+		DirectDamage to target
+	Special:
+		DoT: apply dot to target
+
+Fireball:
+	Attack:
+		Spawn Projectile Mesh
+		launch at target
+	Project Impact with ground:
+		Impact VFX/Sound
+		Destroy proj
+		Do Damage
+	Aquire targets:
+		Get all enemies within radius
+	DoDamage:
+		Do damage to all
+	Special:
+		DoT: apply dot to target
+
+Ignite:
+	Attack:
+		Create linerenderer/vfx beam to target
+	Special:
+		DoT: apply dot to target
+	Retarget:
+		DoDamage to new target if applicable
+
+Water:
+	Attack:
+		Spawn Projectile Mesh
+		launch at target
+	Project Impact (guaranteed):
+		Impact VFX/Sound
+		Destroy proj
+		Do Damage
+	DoDamage:
+		DirectDamage to target
+	SpecialEffect
+		Slow target
+
+Tide:
+	Attack:
+		Create cone mesh/vfx
+	Aquire Targets:
+		Get all targets in cone
+	DoDamage:
+		DirectDamage to targets
+	SpecialEffect
+		Slow targets
+
+Gust:
+	Attack:
+		Spawn Projectile Mesh
+		launch at target
+	Project Impact (guaranteed):
+		Impact VFX/Sound
+		Destroy proj
+		Do Damage
+	Apply damage modifier
+		Armour pen
+	DoDamage:
+		DirectDamage to target
+
+Lightning:
+	AquireTarget:
+		Calculate bounces
+	Attack:
+		Create linerenderer/vfx beam between target
+	Apply damage modifier
+		Armour pen
+	DoDamage:
+		DirectDamage to targets

@@ -1,0 +1,34 @@
+Element Types
+{
+	Physical, Fire, Water, Wind, Earth
+}
+
+AttackType
+{
+	DirectDamage, PBAoE, TargetedAoE, Cone, Chain
+}
+
+ElementalEffects
+{
+	Burning, Slowed, Stun, Piercing, None
+}
+
+Arrow: Physical, DirectDamage, None
+Cannon: Physical, AoE, None
+Ballista: Physical, Direct
+
+Flame: Fire, Direct, Burning
+Fireball: Fire, Aoe, Burning
+Ignite: Fire, Direct, Burning
+
+WaterBlast: Water, Direct, Slow
+TitalWave: Water, Cone, Slow
+FrostBeam: Water, Direct, Slow
+
+RockShard: Earth, Direct, Stun
+Earthquake: Earth, PBAoE, Stun
+Boulder: Earth, Direct, Stun
+
+Gust: Wind, Direct, Piercing
+Lightning: Wind, Chain, Piercing
+WindSlash: Wind, Direct, Piercing

@@ -1,0 +1,106 @@
+	Aquire Target:
+		Immediate direct target
+		Wait for projectile and direct
+		Wait for projectile aoe radius
+		Immediate Cone
+		Immediate PBAoE
+		Immediate AoE
+		Bounces
+
+	Attack Visual:
+		Launch Projectile mesh
+		Draw Line
+		Draw VFX
+		Draw Chain
+
+	Impact:
+		VFX/Sound
+		Destroy proj
+
+	DoDamage for targets:
+		Apply Damage modifier
+
+	Special:
+		DoT
+		Slow
+		Stun
+
+
+
+Arrow:
+	TargetFound
+	GetFirstTarget
+	AttackVisual (Spawn projectile mesh)
+	Wait For Projectile Collision with target/Travel time (from projectile)
+	Impact (projectile)
+	DoDamage (single target)
+
+Arrow:
+	TargetFound
+	GetFirstTarget
+	LaunchAttack
+	    TargetCurrentTarget
+			WaitForTimeToHit
+			Impact VFX
+			DamageTargets
+	    WaitForReload
+	    	GetFirstTarget
+	    	or Stop Routine
+
+Attacking:
+TargetFound
+	GetFirstTarget
+	LaunchAttack
+	WaitForReload
+    	GetFirstTarget
+    	or Stop Routine
+
+
+Cannon:
+	TargetFound
+	GetFirstTarget
+	AttackVisual (Spawn projectile mesh)
+	Wait for ground collision
+	Impact (projectile)
+	GetTargetsInAoe (radius ground colllsion point)
+	DoDamage (multiple)
+
+Flame:
+	TargetFound
+	GetFirstTarget
+	AttackVisual (Spawn projectile mesh)
+	Wait For Projectile Collision with target/Travel time (from projectile)
+	Impact (projectile)
+	DoDamage (single target)
+	Special: (dot)
+
+Ignite:
+	TargetFound
+	GetFirstTarget
+	AttackVisual (Line/VFX)
+	Special(dot)
+	Retarget
+
+Tide:
+	TargetFound
+	GetFirstTarget
+	AttackVisual (cone mesh/VFX)
+	GetTargetsInAoe(Cone)
+	DoDamage (multiple)
+
+Gust:
+	TargetFound
+	GetFirstTarget
+	AttackVisual (Spawn projectile mesh)
+	Wait For Projectile Collision with target/Travel time (from projectile)
+	Impact (projectile)
+	DamageModifier(armour pen)
+	DoDamage (modifier, single)
+
+Lightning:
+	TargetFound
+	GetFirstTarget
+	GetTargetsInAoE(Chain)
+	AttackVisual (chain lightning)
+	DamageModifier(armour pen)
+	DoDamage (multiple)
